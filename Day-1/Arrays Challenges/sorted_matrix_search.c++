@@ -29,7 +29,6 @@ using namespace std;
 
 int main() {
     int n, m, x;
-    vector<vector<int>> mat;
 
     cin>>n>>m;
 
