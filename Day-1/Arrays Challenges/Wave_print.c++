@@ -23,6 +23,22 @@ Explanation
 For spiral level anti-clockwise traversal, Go for first column-> last row ->last column-> first row and then do the same traversal for the remaining matrix .
 */
 
+    /*
+        wave print problem
+        
+        below code is not for spiral but instead it is for printing in zig-zag manner.
+        Sample input : 
+        3 3
+        1 2 3
+        4 5 6
+        7 8 9
+        
+        sample output : 
+        1, 4, 7, 8, 5, 2, 3, 6, 9, END
+
+
+    */
+
 #include <iostream>
 using namespace std;
 
@@ -38,29 +54,15 @@ int main() {
         }
     }
 
-    /*
-        below code is not for spiral but instead it is for printing in zig-zag manner.
-        Sample input : 
-        3 3
-        1 2 3
-        4 5 6
-        7 8 9
-        
-        sample output : 
-        1, 4, 7, 8, 5, 2, 3, 6, 9, END
-
-        int flag = 0,  k = 0;
-        for(int j = 0; j < m; j++){
-            while((flag == 0 ? (k < n) : (k >= 0))){
-                cout<<mat[k][j]<<", ";
-                flag == 0 ? (k++) : (k--);
-            }
-            (flag == 0) ? (k--) : (k++);
-            flag = 1 - flag;
+    int flag = 0,  k = 0;
+    for(int j = 0; j < m; j++){
+        while((flag == 0 ? (k < n) : (k >= 0))){
+            cout<<mat[k][j]<<", ";
+            flag == 0 ? (k++) : (k--);
         }
-
-    */
-    
+        (flag == 0) ? (k--) : (k++);
+        flag = 1 - flag;
+    }
 
     cout<<"END";
 
