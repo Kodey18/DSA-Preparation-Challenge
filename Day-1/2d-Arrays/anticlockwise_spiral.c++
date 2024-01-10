@@ -30,7 +30,7 @@ void antiClockwiseSpiral(int mat[][10], int n, int m){
     // initialising the 4 iterators
     int sc = 0, ec = m-1, sr = 0, er = n-1;
 
-    while(sc <= ec && sr <= er){
+    while(sc < ec && sr < er){
         for(int i = sr; i <= er; i++){
             cout<<mat[i][sc]<<", ";
         }
@@ -46,11 +46,13 @@ void antiClockwiseSpiral(int mat[][10], int n, int m){
         }
         ec--;
 
-        for(int i = ec; i >= sc; i++){
+        for(int i = ec; i >= sc; i--){
             cout<<mat[sr][i]<<", ";
         }
         sr++;
     }
+
+    cout<<"END";
 }
 
 int main() {
