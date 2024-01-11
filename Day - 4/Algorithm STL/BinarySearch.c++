@@ -11,8 +11,7 @@ int main() {
     if(present){
         cout<<"kwey found.\n";
     } else {
-        cout<<"key not found.\n";
+        cout<<"key not found.";
     }
-    
     return 0;
 }
