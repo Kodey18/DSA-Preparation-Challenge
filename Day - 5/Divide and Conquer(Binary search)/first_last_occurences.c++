@@ -15,16 +15,25 @@ index 4(first occurence) and 7(last occurence) in the array.
 using namespace std;
 
 int first_occur(int a[], int n, int key){
-    int s = 0, e = n - 1, ans;
+    /*
+    The working of this function is that we'll go to the mid element and check if it matches to our key and if does the it may be the first occurence of this elment or may not but this is sure the if this is not the first occurence then definitly the first occurence would be on the left side of this.
+    */
 
-    ans = -1;
+    int s = 0, e = n - 1, ans = -1;
+
     while(s <= e){
         int mid = (s + e)/2;
+
         if(a[mid] == key){
-            // update answer to current index
+            // update answer to current index as it may be the first occurence.
             ans = mid;
+
+            // going to the left sub range to check if there is another occurence making that new first occurence
             e = mid - 1;
-        } else if(a[mid] < key){
+        } 
+        // if the mid is not the key element then respectively going to the left or right
+        // sub-array based on the comparision.
+        else if(a[mid] < key){
             s = mid + 1;
         } else {
             e = mid - 1;
@@ -35,6 +44,8 @@ int first_occur(int a[], int n, int key){
 }
 
 int last_occur(int a[], int n, int key){
+    /*
+    */
     int s = 0, e = n - 1, ans;
 
     ans = -1;
