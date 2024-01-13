@@ -16,7 +16,7 @@ NOTE: Return -1 if a valid assignment is not possible.
 
 Problem Constraints
 1 <= N <= 105
- 1 <= A[i], B <= 105
+1 <= A[i], B <= 105
 
 
 
@@ -63,9 +63,52 @@ There are two students. Books can be distributed in following fashion :
 
 
 #include <iostream>
+#include <climits>
 using namespace std;
 
+bool isPossible(int arr[], int n, int s, int mid){
+
+    int curr_pages = 0, students = 1;
+    for(int i = 0; i < n; i++){
+        if(curr_pages + arr[i] > mid){
+            students++;
+            curr_pages = arr[i];
+            if(students > s){
+                return false;
+            }
+        } else {
+            curr_pages = curr_pages + arr[i];
+        }
+    }
+
+    return true;
+}
+
 int findpages(int arr[], int n, int b){
+    if(n < b){
+        return -1;
+    }
+    
+    int sum = 0;
+    for(int i = 0; i < n; i++){
+        sum = sum + arr[i];
+    }
+
+
+    int s = arr[n-1], e = sum, ans = INT_MAX;
+
+    while(s <= e){
+        int mid = (s+e)/2;
+
+        if(isPossible(arr, n, b, mid)){
+            ans = min(ans, mid);
+            e = mid - 1;
+        } else {
+            s = mid + 1;
+        }
+    }
+
+    return ans;
 }
 
 
@@ -81,6 +124,8 @@ int main() {
     for(int i = 0; i < n; i++){
         cin>>books[i];
     }
+
+    cout<<findpages(books, n, b);
     
     return 0;
 }
