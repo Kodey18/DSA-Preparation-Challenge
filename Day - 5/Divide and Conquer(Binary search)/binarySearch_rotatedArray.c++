@@ -21,9 +21,6 @@ int find_key(int a[], int n, int k){
         if(a[mid] == k){
             return mid;
         } 
-        /*
-        
-        */
         else if(a[s] <= a[mid]){
             if(k >= a[s] && k <= a[mid]){
                 e = mid - 1;
