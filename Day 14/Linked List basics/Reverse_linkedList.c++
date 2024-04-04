@@ -38,6 +38,20 @@ void reverseList(Node* &head){
     head = prev;
 }
 
+void RecursiveReverse(Node* &head, Node* prev, Node* curr){
+    //base case
+    if(curr == NULL){
+        head = prev;
+        return;
+    }
+
+    head = curr->next;
+    curr->next = prev;
+    prev = curr;
+    curr = head;
+    RecursiveReverse(head, prev, curr);
+}
+
 /*
 printing using operator overload. "cout<<head" will call the operator overload function. in which cout is one input and head is another therefore the arguments passed in operator<< functions are ostream &out, Node* head.
 */
@@ -70,7 +84,9 @@ int main(){
     cout<<head;
 
     cout<<"here\n";
-    reverseList(head);      //reversing the created linked list.
+    // reverseList(head);      //reversing the created linked list.
+
+    RecursiveReverse(head, NULL, head);
 
     // printList(head);
     cout<<head;
