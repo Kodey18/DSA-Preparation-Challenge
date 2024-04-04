@@ -83,14 +83,26 @@ void deleteAtEnd(Node* head){
     temp->next = NULL;
 }
 
+bool linearSearch(Node* head, int key){
+    if(head == NULL){
+        cout<<"Empty list\n";
+    } else {
+        Node* temp = head;
+        while(temp!=NULL){
+            if(temp->data == key){
+                return true;
+            }
+            temp = temp->next;
+        }
+        return false;
+    }
+}
 void printList(Node* head){
     Node* temp = head;
     for(; temp != NULL; temp = temp->next){
         cout<<temp->data<<" ";
     }
 }
-
-
 
 int main(){
     Node* head = NULL;   //creating a new linked list with one element.
@@ -107,6 +119,12 @@ int main(){
     deleteAthead(head);
 
     deleteAtEnd(head);
+
+    if(linearSearch(head, 5)){
+        cout<<"5 is present in list.\n";
+    } else {
+        cout<<"5 is not present in list.\n";
+    }
 
     printList(head);
 
