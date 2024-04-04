@@ -60,6 +60,16 @@ void insertAtEnd(Node* &head, int data){
     }
 }
 
+void deleteAthead(Node* &head){
+    if(head == NULL) {
+        cout << "The linked list is already empty\n";
+    } else {
+        Node* temp = head->next;
+        delete head;
+        head = temp;
+    }
+}
+
 void printList(Node* head){
     Node* temp = head;
     for(; temp != NULL; temp = temp->next){
@@ -80,6 +90,8 @@ int main(){
     insertAtMiddle(head, 11, 3);
 
     insertAtEnd(head, 100);
+
+    deleteAthead(head);
 
     printList(head);
 
