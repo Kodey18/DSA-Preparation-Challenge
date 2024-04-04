@@ -70,6 +70,19 @@ void deleteAthead(Node* &head){
     }
 }
 
+void deleteAtEnd(Node* head){
+    if (head == NULL) {
+        cout << "The linked list is already empty\n";
+        return;
+    }
+    Node* temp = head;
+    while (temp->next->next != NULL) {
+        temp = temp->next;
+    }
+    delete temp->next;
+    temp->next = NULL;
+}
+
 void printList(Node* head){
     Node* temp = head;
     for(; temp != NULL; temp = temp->next){
@@ -92,6 +105,8 @@ int main(){
     insertAtEnd(head, 100);
 
     deleteAthead(head);
+
+    deleteAtEnd(head);
 
     printList(head);
 
