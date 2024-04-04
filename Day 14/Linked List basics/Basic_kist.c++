@@ -42,11 +42,21 @@ void insertAtMiddle(Node* &head, int data, int position){
     } else {
         Node *newNode = new Node(data);
         Node* temp = head;
-        for(int i = 0; i < position; i++){
+        for(int i = 0; i < position-1; i++){
             temp = temp->next;
         }
         newNode->next = temp->next;
         temp->next = newNode;
+    }
+}
+
+void insertAtEnd(Node* &head, int data){
+    if(head == NULL){
+        head = new Node(data);
+    } else {
+        Node* temp = head;
+        for(; temp->next != NULL; temp = temp->next){}
+        temp->next = new Node(data);
     }
 }
 
@@ -68,6 +78,8 @@ int main(){
     insertAtHead(head,9);
 
     insertAtMiddle(head, 11, 3);
+
+    insertAtEnd(head, 100);
 
     printList(head);
 
