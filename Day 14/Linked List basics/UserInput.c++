@@ -119,12 +119,23 @@ void printList(Node* head){
 /*
 printing using operator overload. "cout<<head" will call the operator overload function. in which cout is one input and head is another therefore the arguments passed in operator<< functions are ostream &out, Node* head.
 */
-void operator<<(ostream &out, Node* head){
+ostream& operator<<(ostream &out, Node* head){
     //printing logic below.
     for(Node* temp = head; temp != NULL; temp = temp->next){
         cout<<temp->data<<" ";
     }
+
+    /*
+        here by returning object of the type ostream basically "cout" will allow to perform the cascading of the overloaded operator.
+        eg : cout<<head1<<head2;
+    */
+    return out;
 }
+
+/*
+Overloading the input opreator cin>> to take the input
+*/
+void operator>>(istream &in, Node* head){}
 
 int main(){
     Node* head = NULL;   //creating a new linked list with one element.
