@@ -97,6 +97,18 @@ bool linearSearch(Node* head, int key){
         return false;
     }
 }
+
+bool recursiveSearch(Node* head, int key){
+    //base case
+    if(head->data == key){
+        return true;
+    } else if(head == NULL){
+        return false;
+    }
+
+    recursiveSearch(head->next, key);
+}
+
 void printList(Node* head){
     Node* temp = head;
     for(; temp != NULL; temp = temp->next){
@@ -124,6 +136,12 @@ int main(){
         cout<<"5 is present in list.\n";
     } else {
         cout<<"5 is not present in list.\n";
+    }
+
+    if(linearSearch(head, 100)){
+        cout<<"100 is present in list.\n";
+    } else {
+        cout<<"100 is not present in list.\n";
     }
 
     printList(head);
