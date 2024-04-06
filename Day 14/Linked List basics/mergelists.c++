@@ -36,40 +36,62 @@ void insertAtEnd(Node* &head, int data){
     }
 }
 
-Node* klast(Node* head, int k){
-    if(head == NULL) return NULL; // If list is empty
-    Node* slow = head;
-    Node* fast = head;
+/*
+primitive approach : create a new third list and parse through the given 2 sorted list by comparing  their nodes value and inserting smaller one in the third.
+*/
+Node* mergelist(Node* head1, Node* head2){
+    // Base cases 
+    if (head1 == NULL) return head2;
+    if (head2 == NULL) return head1;
+
+    Node* head3;
     
-    while(k--){
-        fast = fast->next;
+    /* pick the smaller one and recurse on remaining list. Basically with each recursive call we are chosing the smaller value and making the list small by moving the head to next to chose from another small value. */
+    if (head1->data > head2->data) {
+        head3 = head2;
+        head3->next = mergelist(head1, head2->next);
+    } else {
+        head3 = head1;
+        head3->next = mergelist(head1->next, head2);
     }
 
-    while(fast != NULL){
-        fast = fast->next;
-        slow = slow->next;
+    return  head3;
+}
+
+void printList(Node* head){
+    Node* temp = head;
+    for(; temp != NULL; temp = temp->next){
+        cout<<temp->data<<" ";
     }
-    return slow;
 }
 
 int main(){
-    Node* head = NULL;
-    int k;
-
-    cin>>k;
+    Node* h1 = NULL;
+    Node* h2 = NULL;
+    int data;
 
     while(1){
-        cout<<"Enter data (to stop enter -1) : ";
-        int data;
+        cout<<"Enter list 1 data (to stop enter -1 && list should be sorted) : ";
         cin>>data;
         if(data == -1){
             break;
         } else {
-            insertAtEnd(head, data);  //inserting the entered value at end of the list.
+            insertAtEnd(h1, data);  //inserting the entered value at end of the list.
         }
     }
 
-    cout<<k<<" th node from the last is "<<klast(head, k)->data<<endl;
+    while(1){
+        cout<<"Enter list 2 data (to stop enter -1 && list should be sorted) : ";
+        cin>>data;
+        if(data == -1){
+            break;
+        } else {
+            insertAtEnd(h2, data);  //inserting the entered value at end of the list.
+        }
+    }
+
+    Node* h3 = mergelist(h1, h2);
+    printList(h3);   //printing the merged and sorted list.
 
     return 0;
 }
