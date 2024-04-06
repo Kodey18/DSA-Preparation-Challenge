@@ -20,7 +20,7 @@ int main() {
     ans = 0;
     for(int i = 0; i < n; i++){
         ans = (ans^arr[i]);
-    }
+    }   
 
     /*
     1. extract the bit position with value 1 in ans, means that bit position would be different in both unique numbers as the xor of different bit gives 1.
